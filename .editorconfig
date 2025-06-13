@@ -1,0 +1,15 @@
+# Indica que esta es la configuración raíz
+root = true
+
+# Aplica a todos los archivos
+[*]
+charset = utf-8
+end_of_line = lf
+indent_style = space
+indent_size = 2
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+# Archivos Markdown pueden mantener espacios al final de línea
+[*.md]
+trim_trailing_whitespace = false
