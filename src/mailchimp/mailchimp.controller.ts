@@ -2,7 +2,7 @@ import { Controller, Post, Body, Get } from '@nestjs/common';
 import { MailchimpService } from './mailchimp.service';
 import { SubscribeDto } from './dto/subscribe/subscribe.dto';
 
-@Controller('mailchimp')
+@Controller('v1/mailchimp')
 export class MailchimpController {
   constructor(private readonly mailchimpService: MailchimpService) {}
 
