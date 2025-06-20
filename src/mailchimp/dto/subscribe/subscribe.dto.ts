@@ -4,17 +4,19 @@ export class SubscribeDto {
   @IsEmail()
   email!: string;
 
-  @IsOptional()
   @IsString()
+  @IsOptional()
   firstName?: string;
 
-  @IsOptional()
   @IsString()
+  @IsOptional()
   lastName?: string;
 
+  @IsString({ each: true })
   @IsOptional()
   tags?: string[];
 
+  @IsString()
   @IsOptional()
   language?: string;
 }
