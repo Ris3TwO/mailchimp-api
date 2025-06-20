@@ -8,7 +8,7 @@ export class MailchimpController {
 
   @Get()
   getHello() {
-    return { message: 'Backend is working!' };
+    return { message: 'The backend is working as expected!' };
   }
 
   @Post('subscribe')
