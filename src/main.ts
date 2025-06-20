@@ -24,7 +24,11 @@ async function bootstrap() {
 
   app.useGlobalFilters(new ThrottlerExceptionFilter());
 
-  await app.listen(process.env.PORT ?? 3000);
+  const PORT = process.env.PORT ?? 3000;
+
+  await app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+  });
 }
 bootstrap().catch((err) => {
   console.error('Error starting application', err);
