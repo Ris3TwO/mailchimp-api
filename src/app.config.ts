@@ -1,0 +1,23 @@
+// app.config.ts
+import { INestApplication } from '@nestjs/common';
+import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
+import { ThrottlerExceptionFilter } from './mailchimp/filters/ThrottlerException.filter';
+
+export function configureApp(app: INestApplication) {
+  const config = new DocumentBuilder()
+    .setTitle('Mailchimp API')
+    .setDescription('API para integración con Mailchimp')
+    .setVersion('1.0')
+    .build();
+  const document = SwaggerModule.createDocument(app, config);
+  SwaggerModule.setup('api', app, document);
+
+  app.enableCors({
+    origin: process.env.ALLOWED_ORIGINS?.split(',') || '*',
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true,
+  });
+
+  app.setGlobalPrefix('api');
+  app.useGlobalFilters(new ThrottlerExceptionFilter());
+}
