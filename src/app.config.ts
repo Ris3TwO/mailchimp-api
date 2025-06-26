@@ -1,4 +1,3 @@
-// app.config.ts
 import { INestApplication } from '@nestjs/common';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { ThrottlerExceptionFilter } from './mailchimp/filters/ThrottlerException.filter';
@@ -8,6 +7,7 @@ export function configureApp(app: INestApplication) {
     .setTitle('Mailchimp API')
     .setDescription('API para integración con Mailchimp')
     .setVersion('1.0')
+    .addServer('/api')
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
