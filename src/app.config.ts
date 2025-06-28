@@ -1,6 +1,11 @@
-import { INestApplication } from '@nestjs/common';
+import { INestApplication, ValidationPipe } from '@nestjs/common';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { ThrottlerExceptionFilter } from './mailchimp/filters/ThrottlerException.filter';
+
+export const validationPipeOptions = {
+  whitelist: true,
+  forbidNonWhitelisted: true,
+};
 
 export function configureApp(app: INestApplication) {
   const config = new DocumentBuilder()
@@ -17,6 +22,8 @@ export function configureApp(app: INestApplication) {
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
   });
+
+  app.useGlobalPipes(new ValidationPipe(validationPipeOptions));
 
   app.setGlobalPrefix('api');
   app.useGlobalFilters(new ThrottlerExceptionFilter());

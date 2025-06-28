@@ -102,6 +102,14 @@ describe('MailchimpService', () => {
       );
     });
 
+    it('should throw an error if email is missing in subscribeDto', async () => {
+      const invalidDto = {
+        firstName: 'NoEmail',
+      } as SubscribeDto;
+
+      await expect(service.subscribe(invalidDto)).rejects.toThrow('Email is required');
+    });
+
     describe('error handling', () => {
       it('should handle AxiosError with response', async () => {
         const errorResponse = {

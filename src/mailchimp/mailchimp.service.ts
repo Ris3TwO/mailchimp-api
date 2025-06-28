@@ -10,6 +10,10 @@ export class MailchimpService {
   private readonly audienceId = process.env.MAILCHIMP_AUDIENCE_ID;
 
   async subscribe(subscribeDto: SubscribeDto) {
+    if (!subscribeDto?.email) {
+      throw new Error('Email is required');
+    }
+
     const url = `https://${this.serverPrefix}.api.mailchimp.com/3.0/lists/${this.audienceId}/members`;
 
     const data = {
